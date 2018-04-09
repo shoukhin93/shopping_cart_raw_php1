@@ -1,8 +1,15 @@
 <?php
+include ('connection.php');
 session_start();
 $connect = mysqli_connect("localhost", "root", "", "tut");
+
+
 if(isset($_POST["add"]))
 {
+    $id = $_GET['id'];
+    $item_query = "SELECT * FROM products where id = '$id'";
+    $item = $connection->query($item_query)->fetch_assoc();
+
 	if(isset($_SESSION["cart"]))
 	{
 		$item_array_id = array_column($_SESSION["cart"], "product_id");
@@ -15,8 +22,18 @@ if(isset($_POST["add"]))
 			'product_price' => $_POST["hidden_price"],
 			'item_quantity' => $_POST["quantity"]
 			);
-			$_SESSION["cart"][$count] = $item_array;
-			echo '<script>window.location="index.php"</script>';
+
+			if($item_array['item_quantity'] > $item['quantity'])
+            {
+                $product_name = $item_array['item_name'];
+                echo "<script>alert('not enough product in our store')</script>";
+                echo '<script>window.location="index.php"</script>';
+            }
+
+            else {
+                $_SESSION["cart"][$count] = $item_array;
+                echo '<script>window.location="index.php"</script>';
+            }
 		}
 		else
 		{
