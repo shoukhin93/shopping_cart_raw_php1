@@ -25,11 +25,11 @@ if (!empty($_SESSION["cart"])) {
 
     foreach ($_SESSION["cart"] as $keys => $values) {
         $v_id = $last_id;
-        $item_id = $values['product_id'];
+        $item_id = $values['product_name'];
         $ordered_quantity = $values['item_quantity'];
         $unit_price = $values['product_price'];
 
-        $voucher_insert = "INSERT INTO voucher_info (v_id,item_id,ordered_quantity,unit_price) VALUES ('$v_id','$item_id','$ordered_quantity','$unit_price')";
+        $voucher_insert = "INSERT INTO voucher_info (v_id,item_name,ordered_quantity,unit_price) VALUES ('$v_id','$item_id','$ordered_quantity','$unit_price')";
 
         $connection->query($voucher_insert);
     }

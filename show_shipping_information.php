@@ -35,7 +35,8 @@ $result = $connection->query($shipping_info_query);
 
             //echo $user;
 
-            echo "<tr><td>" . $row['id']."</td>";
+            $id = $row['id'];
+            echo "<tr><td><a href='show_voucher.php?id=$id'>$id</a></td>";
             echo "<td>" . $row['username'] . "</td>";
             echo "<td>" . $user['full_address']."</td>";
             echo "<td>" . $user['zipcode']."</td>";
