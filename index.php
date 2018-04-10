@@ -83,6 +83,7 @@ $connect = mysqli_connect("localhost", "root", "", "tut");
                 <td></td>
             </tr>
             <?php
+            $_SESSION['total_price'] = $total;
         }
         ?>
     </table>
