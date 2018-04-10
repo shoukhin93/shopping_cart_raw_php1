@@ -86,6 +86,8 @@ $connect = mysqli_connect("localhost", "root", "", "tut");
         }
         ?>
     </table>
+
+    <a class="btn btn-primary" href="confirm_shipping_info.php">Confirm</a>
 </div>
 </div>
 </body>
