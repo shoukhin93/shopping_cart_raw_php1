@@ -21,7 +21,7 @@ last_name,contact_no,full_address,zipcode) VALUES ('$username','$password','$fir
 '$last_name','$contact_no','$full_address','$zipcode') ";
 
         $connection->query($query_user_information);
-        header('location:index.php');
+        header('location:exindex.php');
         exit();
     }
 }

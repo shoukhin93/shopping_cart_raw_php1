@@ -1,7 +1,7 @@
 <?php
 include('connection.php');
 if (!isset($_POST['id']))
-    header('location:index.php');
+    header('location:exindex.php');
 $id = $_POST['id'];
 $item_search_query = "SELECT * FROM products where id = '$id'";
 $item = $connection->query($item_search_query)->fetch_assoc();
