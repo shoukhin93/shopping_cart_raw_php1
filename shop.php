@@ -15,6 +15,7 @@ if (isset($_POST["add"])) {
             $count = count($_SESSION["cart"]);
             $item_array = array(
                 'product_id' => $_GET["id"],
+                'product_image'=>$_POST["hidden_image_path"],
                 'item_name' => $_POST["hidden_name"],
                 'product_price' => $_POST["hidden_price"],
                 'item_quantity' => $_POST["quantity"]
@@ -26,16 +27,18 @@ if (isset($_POST["add"])) {
                 echo '<script>window.location="index.php"</script>';
             } else {
                 $_SESSION["cart"][$count] = $item_array;
-                echo '<script>window.location="exindex.php"</script>';
+                echo "<script>alert('Product added to cart')</script>";
+                echo '<script>window.location="index.php"</script>';
             }
         } else {
             echo '<script>alert("Products already added to cart")</script>';
-            echo '<script>window.location="exindex.php"</script>';
+            echo '<script>window.location="index.php"</script>';
 
         }
     } else {
         $item_array = array(
             'product_id' => $_GET["id"],
+            'product_image'=>$_POST["hidden_image_path"],
             'item_name' => $_POST["hidden_name"],
             'product_price' => $_POST["hidden_price"],
             'item_quantity' => $_POST["quantity"]
@@ -49,7 +52,7 @@ if (isset($_GET["action"])) {
             if ($values["product_id"] == $_GET["id"]) {
                 unset($_SESSION["cart"][$keys]);
                 echo '<script>alert("Product has been removed")</script>';
-                echo '<script>window.location="exindex.php"</script>';
+                echo '<script>window.location="cart.php"</script>';
             }
         }
     }
