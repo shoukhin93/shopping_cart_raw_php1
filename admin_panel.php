@@ -1,18 +1,11 @@
 <?php
-include('connection.php');
-$query = "SELECT * FROM products ORDER BY id ASC";
-
-$result = $connection->query($query);
-
-
+session_start();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Shopping cart</title>
+    <title>Admin Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -34,32 +27,32 @@ $result = $connection->query($query);
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
 </head>
 <body>
-<!-- 
-	Upper Header Section 
+<!--
+	Upper Header Section
 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="topNav">
         <div class="container">
             <div class="alignR">
-                <!-- <div class="pull-left socialNw">
-                     <a href="#"><span class="icon-twitter"></span></a>
-                     <a href="#"><span class="icon-facebook"></span></a>
-                     <a href="#"><span class="icon-youtube"></span></a>
-                     <a href="#"><span class="icon-tumblr"></span></a>
-                 </div>-->
-                <a href="index.html"> <span class="icon-home"></span> Home</a>
+                <div class="pull-left socialNw">
+                    <a href="#"><span class="icon-twitter"></span></a>
+                    <a href="#"><span class="icon-facebook"></span></a>
+                    <a href="#"><span class="icon-youtube"></span></a>
+                    <a href="#"><span class="icon-tumblr"></span></a>
+                </div>
+                <a href="index.php"> <span class="icon-home"></span> Home</a>
                 <a href="#"><span class="icon-user"></span> My Account</a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a href="cart.php"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
-                            class="badge badge-warning"> $448.42</span></a>
+                <a href="cart.php"><span class="icon-shopping-cart"></span> <?php echo count($_SESSION["cart"]); ?>
+                    Item(s) - </a>
             </div>
         </div>
     </div>
 </div>
 
 <!--
-Lower Header Section 
+Lower Header Section
 -->
 <div class="container">
     <div id="gototop"></div>
@@ -67,15 +60,16 @@ Lower Header Section
         <div class="row">
             <div class="span4">
                 <h1>
-                    <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
+                    <a class="logo" href="index.php"><span>Twitter Bootstrap ecommerce template</span>
                         <img src="assets/img/logo-bootstrap-shoping-cart.png" alt="bootstrap sexy shop">
                     </a>
                 </h1>
             </div>
 
             <div class="span8 alignR">
-                <p><br> <strong> Support (24/7) 0177777777 </strong><br><br></p>
-                <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
+                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
+                <span class="btn btn-mini">[ <?php echo count($_SESSION["cart"]); ?> ] <span
+                            class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
             </div>
         </div>
@@ -94,7 +88,8 @@ Lower Header Section
                 </a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class=""><a href="#">Home </a></li>
+                        <li class=""><a href="index.php">Home </a></li>
+
                     </ul>
                     <form action="#" class="navbar-search pull-right">
                         <input type="text" placeholder="Search" class="search-query span2">
@@ -128,48 +123,61 @@ Lower Header Section
     <!--
     Body Section
     -->
-    <!--
-    Three column view
-    -->
-    <h3>Products </h3>
-    <ul class="thumbnails">
+    <div class="row">
 
-        <?php
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="index.php">Home</a> <span class="divider">/</span></li>
+                <li class="active">Login</li>
+            </ul>
+            <h3> Add Items</h3>
+            <hr class="soft"/>
 
-        //dynamically generating views
-        while ($row = $result->fetch_assoc()) {
+            <div class="row">
+                <div class="span4"></div>
+                <div class="span6">
+                    <div class="well">
+                        <h5>Add items</h5><br/>
+                        Fill all the fields to add items<br/><br/><br/>
+                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Product Name</label>
+                                <div class="controls">
+                                    <input type="text" name="product_name">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Price</label>
+                                <div class="controls">
+                                    <input type="text" name="price">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Quantity</label>
+                                <div class="controls">
+                                    <input type="text" name="quantity">
+                                </div>
+                            </div>
 
-            ?>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Image</label>
+                                <div class="controls">
+                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                </div>
+                            </div>
 
-            <li class="span4">
-                <div class="thumbnail">
-                    <form method="post" action="shop.php?action=add&id=<?php echo $row["id"]; ?>">
-                        <img src="<?php echo $row["image"]; ?>" alt="">
-                        <div class="caption cntr">
-                            <p><?php echo $row["p_name"]; ?></p>
-                            <p><strong> $<?php echo $row["price"]; ?></strong></p>
-                            <h5 class="text-info">Available quantity : <?php echo $row["quantity"]; ?></h5>
-                            <input type="text" name="quantity" class="form-control" value="1">
-                            <input type="hidden" name="hidden_name" value="<?php echo $row["p_name"]; ?>">
-                            <input type="hidden" name="hidden_image_path" value="<?php echo $row["image"]; ?>">
-                            <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>">
-                            <br class="clr">
-                            <input type="submit" name="add" style="margin-top:5px;" class="shopBtn"
-                                   value="Add to Cart">
-                        </div>
-                    </form>
+                            <div class="controls">
+                                <button type="submit" name="submit" class="btn block">Add</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <div class="span1"> &nbsp;</div>
 
+            </div>
 
-            </li>
-
-            <?php
-        }
-
-        ?>
-
-    </ul>
-
+        </div>
+    </div>
     <!--
     Clients
     -->
@@ -184,14 +192,9 @@ Lower Header Section
 <div class="copyright">
     <div class="container">
 
-        <span>Copyright &copy; 2018<br> e-commerce shopping cart</span>
+        <span>Copyright &copy; 2013<br> bootstrap ecommerce shopping template</span>
     </div>
 </div>
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="assets/js/jquery.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.easing-1.3.min.js"></script>
-<script src="assets/js/jquery.scrollTo-1.4.3.1-min.js"></script>
-<script src="assets/js/shop.js"></script>
+
 </body>
 </html>

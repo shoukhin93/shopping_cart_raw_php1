@@ -6,7 +6,8 @@ include('connection.php');
 if (!isset($_POST['product_name']) || !isset($_POST['price']) ||
     !isset($_POST['quantity'])
 ) {
-    header('location:item_add.php');
+    echo "<script>alert('Fill all the fields correctly!')</script>";
+    echo '<script>window.location="admin_panel.php"</script>';
 }
 
 $target_dir = "images/";
@@ -16,19 +17,19 @@ $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 5000000) {
-    echo "Sorry, your file is too large.";
+    echo "<script>alert('Sorry, your file is too large')</script>";
     $uploadOk = 0;
 }
 // Allow certain file formats
 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif"
 ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed')</script>";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    echo "<script>alert('Sorry, your file was not uploaded')</script>";
 // if everything is ok, try to upload file
 } else {
 
@@ -37,7 +38,7 @@ if ($uploadOk == 0) {
     $quantity = $_POST['quantity'];
 
     //adding an unique id to distinguish between images
-    $image_path = $target_dir . $_FILES["fileToUpload"]["name"] ;
+    $image_path = $target_dir . $_FILES["fileToUpload"]["name"];
 
     //echo $image_path;
 
@@ -47,10 +48,11 @@ if ($uploadOk == 0) {
 
     //saving image
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        header("location: item_add.php");
-        exit();
+        echo "<script>alert('Item successfully saved!')</script>";
+        echo '<script>window.location="admin_panel.php"</script>';
     } else {
-        echo "Sorry, there was an error inserting items";
+        echo "<script>alert('Sorry, there was an error inserting items')</script>";
+        echo '<script>window.location="admin_panel.php"</script>';
     }
 }
 ?>
