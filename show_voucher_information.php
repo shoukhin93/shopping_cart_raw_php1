@@ -1,6 +1,15 @@
 <?php
 session_start();
 include('connection.php');
+
+//admin authentication
+if (!isset($_SESSION['user']) || !isset($_SESSION['admin']))
+    header('location:login.php');
+
+elseif ($_SESSION['admin'] == 0) {
+    header('location:login.php');
+}
+
 if (!isset($_GET['id'])) {
     header('location:show_shipping_information.php');
     exit();

@@ -69,7 +69,8 @@ Lower Header Section
 
             <div class="span8 alignR">
                 <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
-                <span class="btn btn-mini">[<?php echo count($_SESSION["cart"]); ?>] <span
+                <span class="btn btn-mini">[<?php if (isset($_SESSION["cart"]))
+                        echo count($_SESSION["cart"]); ?>] <span
                             class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
             </div>
@@ -193,7 +194,7 @@ Lower Header Section
                     <a href="confirm_shipping_info.php" class="shopBtn btn-large pull-right">Next <span
                                 class="icon-arrow-right"></span></a>
                     <?php
-                } else {
+                } elseif (isset($_SESSION["cart"])) {
                     ?>
 
                     <a href="login.php" class="shopBtn btn-large pull-right">Next <span

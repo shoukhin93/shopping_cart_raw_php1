@@ -2,6 +2,14 @@
 
 include('connection.php');
 
+//admin authentication
+if (!isset($_SESSION['user']) || !isset($_SESSION['admin']))
+    header('location:login.php');
+
+elseif ($_SESSION['admin'] == 0) {
+    header('location:login.php');
+}
+
 
 if (!isset($_POST['product_name']) || !isset($_POST['price']) ||
     !isset($_POST['quantity'])
@@ -38,7 +46,7 @@ if ($uploadOk == 0) {
     $quantity = $_POST['quantity'];
 
     //adding an unique id to distinguish between images
-    $image_path = $target_dir . $_FILES["fileToUpload"]["name"];
+    $image_path = uniqid().$target_dir . $_FILES["fileToUpload"]["name"];
 
     //echo $image_path;
 

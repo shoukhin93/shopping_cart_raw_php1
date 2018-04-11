@@ -1,6 +1,15 @@
 <?php
 include('connection.php');
 session_start();
+
+//admin authentication
+if (!isset($_SESSION['user']) || !isset($_SESSION['admin']))
+    header('location:login.php');
+
+elseif ($_SESSION['admin'] == 0) {
+    header('location:login.php');
+}
+
 if (!isset($_POST['id']))
     header('location:index.php');
 $id = $_POST['id'];
@@ -22,24 +31,6 @@ if (isset($_POST['submit'])) {
 
 
 ?>
-
-<!--<!doctype html>
-<html lang="en">
-<head>
-    <title>Document</title>
-</head>
-<body>
-<form action="" method="post" enctype="multipart/form-data">
-    <input type="hidden" value="<?php /*echo $id; */ ?>" name="id">
-    <input type="text" name="product_name"
-           value="<? /*= (isset($product_name)) ? $product_name : $item['p_name']; */ ?>">
-    <input type="text" name="price" value="<? /*= (isset($price)) ? $price : $item['price']; */ ?>">
-    <input type="text" name="quantity" value="<? /*= (isset($quantity)) ? $quantity : $item['quantity']; */ ?>">
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" name="submit" value="Update">
-</form>
-</body>
-</html>-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +75,8 @@ if (isset($_POST['submit'])) {
                 <a href="#"><span class="icon-user"></span> My Account</a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a href="cart.php"><span class="icon-shopping-cart"></span> <?php echo count($_SESSION["cart"]); ?>
+                <a href="cart.php"><span class="icon-shopping-cart"></span><?php if (isset($_SESSION["cart"]))
+                        echo count($_SESSION["cart"]); ?>
                     Item(s) - </a>
             </div>
         </div>
@@ -108,7 +100,8 @@ Lower Header Section
 
             <div class="span8 alignR">
                 <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
-                <span class="btn btn-mini">[ <?php echo count($_SESSION["cart"]); ?> ] <span
+                <span class="btn btn-mini">[<?php if (isset($_SESSION["cart"]))
+                        echo count($_SESSION["cart"]); ?> ] <span
                             class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
             </div>

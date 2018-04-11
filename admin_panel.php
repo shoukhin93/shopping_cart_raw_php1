@@ -1,6 +1,14 @@
 <?php
 session_start();
 include('connection.php');
+
+if (!isset($_SESSION['user']) || !isset($_SESSION['admin']))
+    header('location:login.php');
+
+elseif ($_SESSION['admin'] == 0) {
+    header('location:login.php');
+}
+
 $shipping_info_query = "SELECT * FROM shipping_info";
 $result = $connection->query($shipping_info_query);
 

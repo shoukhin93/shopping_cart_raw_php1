@@ -45,7 +45,7 @@ else if (isset($_POST['login'])) {
         $_SESSION['user'] = 'admin';
         $_SESSION['admin'] = 1;
         echo "<script>alert('Welcome Admin!')</script>";
-        echo '<script>window.location="item_add.php"</script>';
+        echo '<script>window.location="admin_panel.php"</script>';
     }
 
     $login_query = "SELECT * FROM user_information WHERE username ='$username' AND password = '$password'";

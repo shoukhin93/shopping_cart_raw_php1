@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('connection.php');
 $query = "SELECT * FROM products ORDER BY id ASC";
 
@@ -47,10 +48,9 @@ $result = $connection->query($query);
                      <a href="#"><span class="icon-youtube"></span></a>
                      <a href="#"><span class="icon-tumblr"></span></a>
                  </div>-->
-                <a href="index.html"> <span class="icon-home"></span> Home</a>
-                <a href="#"><span class="icon-user"></span> My Account</a>
-                <a href="register.html"><span class="icon-edit"></span> Free Register </a>
-                <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
+                <a href="index.php"> <span class="icon-home"></span> Home</a>
+                <a href="login.php"><span class="icon-edit"></span> Free Register </a>
+                <a href="logout.php"><?php if (isset($_SESSION['user'])) echo "Logout"; ?></a>
                 <a href="cart.php"><span class="icon-shopping-cart"></span> <?php if (isset($_SESSION["cart"]))
                         echo count($_SESSION["cart"]); ?> Item(s)</a>
             </div>

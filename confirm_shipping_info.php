@@ -4,6 +4,14 @@ include('connection.php');
 
 session_start();
 
+//admin authentication
+if (!isset($_SESSION['user']) || !isset($_SESSION['admin']))
+    header('location:login.php');
+
+elseif ($_SESSION['admin'] == 0) {
+    header('location:login.php');
+}
+
 //if session not empty
 //echo "ok";
 if (!empty($_SESSION["cart"])) {
