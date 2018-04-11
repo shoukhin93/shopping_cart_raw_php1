@@ -2,6 +2,7 @@
 
 include('connection.php');
 
+
 if (isset($_POST['register'])) {
 
     if (isset($_POST['register']) && isset($_POST['username']) && isset($_POST['password']) &&
@@ -16,21 +17,23 @@ if (isset($_POST['register'])) {
         $full_address = $_POST['full_address'];
         $zipcode = $_POST['zipcode'];
 
-        $query_user_information = "INSERT INTO user_information (username, password,first_name,
-last_name,contact_no,full_address,zipcode) VALUES ('$username','$password','$first_name',
-'$last_name','$contact_no','$full_address','$zipcode') ";
+        $query_user_information = "INSERT INTO user_information (username, password,first_name,last_name,contact_no,full_address,zipcode) VALUES ('$username','$password','$first_name','$last_name','$contact_no','$full_address','$zipcode') ";
 
         $connection->query($query_user_information);
-        header('location:exindex.php');
-        exit();
+        echo "<script>alert('Successfully registered!')</script>";
+        echo '<script>window.location="index.php"</script>';
+    } else {
+        echo "<script>alert('Failed to register! Please fill the fields correctly!')</script>";
+        echo '<script>window.location="login.php"</script>';
     }
-}
+} //for login
+else if (isset($_POST['login'])) {
+    //echo "ok";
 
-//for login
-if (isset($_POST['login'])) {
     if (!isset($_POST['username']) || !isset($_POST['password'])) {
-        header('location:login_or_register.php');
-        exit();
+        echo "<script>alert('Failed to login! Please fill the fields correctly!')</script>";
+        echo '<script>window.location="login.php"</script>';
+        //echo "alert";
     }
 
     $username = $_POST['username'];
@@ -39,55 +42,30 @@ if (isset($_POST['login'])) {
     //user is admin
     if ($username == 'admin' && $password == 'admin') {
         session_start();
+        $_SESSION['user'] = 'admin';
         $_SESSION['admin'] = 1;
-        header('location:item_add.php');
-        exit();
+        echo "<script>alert('Welcome Admin!')</script>";
+        echo '<script>window.location="item_add.php"</script>';
     }
 
     $login_query = "SELECT * FROM user_information WHERE username ='$username' AND password = '$password'";
     $user = $connection->query($login_query);
 
-    //echo $username . " " . $password;
 
     if (mysqli_num_rows($user) == 1) {
         session_start();
         $_SESSION['user'] = $user;
         $_SESSION['admin'] = 0;
+        echo "<script>alert('Successfully logged in!')</script>";
+        echo '<script>window.location="index.php"</script>';
     } else {
-        echo "Invalid username or password";
+        echo "<script>alert('Invalid username or password!')</script>";
+        echo '<script>window.location="login.php"</script>';
     }
 
+} else {
+    echo "<script>alert('Fill all fields correctly!!')</script>";
+    echo '<script>window.location="login.php"</script>';
 }
 
-?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Login or register</title>
-</head>
-<body>
-
-<form method="post">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="text" name="first_name" placeholder="First Name">
-    <input type="text" name="last_name" placeholder="Last Name">
-    <input type="text" name="contact_no" placeholder="Contact Number">
-    <input type="text" name="full_address" placeholder="Full Address">
-    <input type="text" name="zipcode" placeholder="Zipcode">
-
-    <input type="submit" name="register" value="Add">
-
-</form>
-
-<form method="post">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-
-    <input type="submit" name="login" value="Add">
-
-</form>
-
-</body>
-</html>

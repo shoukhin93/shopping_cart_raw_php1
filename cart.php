@@ -3,7 +3,6 @@
 session_start();
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +43,10 @@ session_start();
                 <a href="#"><span class="icon-user"></span> My Account</a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a class="active" href="cart.php"><span class="icon-shopping-cart"></span> <?php echo count($_SESSION["cart"]); ?> Item(s) </a>
+                <a class="active" href="cart.php"><span
+                            class="icon-shopping-cart"></span>
+                    <?php if (isset($_SESSION["cart"]))
+                        echo count($_SESSION["cart"]); ?> Item(s) </a>
             </div>
         </div>
     </div>
@@ -67,7 +69,8 @@ Lower Header Section
 
             <div class="span8 alignR">
                 <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
-                <span class="btn btn-mini">[<?php echo count($_SESSION["cart"]); ?>] <span class="icon-shopping-cart"></span></span>
+                <span class="btn btn-mini">[<?php echo count($_SESSION["cart"]); ?>] <span
+                            class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
             </div>
         </div>
@@ -129,7 +132,9 @@ Lower Header Section
             </ul>
             <div class="well well-small">
                 <h1>Check Out
-                    <small class="pull-right"> <?php echo count($_SESSION["cart"]); ?> Item(s) in the cart</small>
+                    <small class="pull-right"> <?php if (isset($_SESSION["cart"]))
+                            echo count($_SESSION["cart"]); ?> Item(s) in the cart
+                    </small>
                 </h1>
                 <hr class="soften"/>
 
@@ -179,10 +184,23 @@ Lower Header Section
                     </tbody>
                 </table>
                 <br/>
-                <a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue
+                <a href="index.php" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue
                     Shopping </a>
-                <a href="login.html" class="shopBtn btn-large pull-right">Next <span
-                            class="icon-arrow-right"></span></a>
+
+                <?php
+                if (isset($_SESSION['user'])) {
+                    ?>
+                    <a href="confirm_shipping_info.php" class="shopBtn btn-large pull-right">Next <span
+                                class="icon-arrow-right"></span></a>
+                    <?php
+                } else {
+                    ?>
+
+                    <a href="login.php" class="shopBtn btn-large pull-right">Next <span
+                                class="icon-arrow-right"></span></a>
+                    <?php
+                }
+                ?>
 
             </div>
         </div>
