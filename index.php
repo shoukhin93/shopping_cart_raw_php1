@@ -51,8 +51,8 @@ $result = $connection->query($query);
                 <a href="#"><span class="icon-user"></span> My Account</a>
                 <a href="register.html"><span class="icon-edit"></span> Free Register </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-                <a href="cart.php"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
-                            class="badge badge-warning"> $448.42</span></a>
+                <a href="cart.php"><span class="icon-shopping-cart"></span> <?php if (isset($_SESSION["cart"]))
+                        echo count($_SESSION["cart"]); ?> Item(s)</a>
             </div>
         </div>
     </div>
@@ -75,7 +75,8 @@ Lower Header Section
 
             <div class="span8 alignR">
                 <p><br> <strong> Support (24/7) 0177777777 </strong><br><br></p>
-                <span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span>
+                <span class="btn btn-mini">[ <?php if (isset($_SESSION["cart"]))
+                        echo count($_SESSION["cart"]); ?> ] <span class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
             </div>
         </div>
@@ -166,8 +167,8 @@ Lower Header Section
                         </div>
                     </form>
 
-                        <a class="btn btn-danger" style="margin-top:5px;"
-                           href="delete_item.php?id=<?php echo $row['id']; ?>">Delete</a>
+                    <a class="btn btn-danger" style="margin-top:5px;"
+                       href="delete_item.php?id=<?php echo $row['id']; ?>">Delete</a>
 
                 </div>
 
