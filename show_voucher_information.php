@@ -1,9 +1,13 @@
 <?php
 session_start();
 include('connection.php');
-$shipping_info_query = "SELECT * FROM shipping_info";
-$result = $connection->query($shipping_info_query);
-
+if (!isset($_GET['id'])) {
+    header('location:show_shipping_information.php');
+    exit();
+}
+$id = $_GET['id'];
+$voucher_query = "SELECT * FROM voucher_info where v_id = '$id'";
+$result = $connection->query($voucher_query);
 
 ?>
 ?>
@@ -139,50 +143,7 @@ Lower Header Section
             <h3> Shipping History</h3>
             <hr class="soft"/>
 
-            <div class="row">
-                <div class="span4"></div>
-                <div class="span6">
-                    <div class="well">
-                        <h5>Add items</h5><br/>
-                        Fill all the fields to add items<br/><br/><br/>
-                        <form action="upload.php" method="post" enctype="multipart/form-data">
-                            <div class="control-group">
-                                <label class="control-label" for="inputEmail">Product Name</label>
-                                <div class="controls">
-                                    <input type="text" name="product_name">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputEmail">Price</label>
-                                <div class="controls">
-                                    <input type="text" name="price">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputEmail">Quantity</label>
-                                <div class="controls">
-                                    <input type="text" name="quantity">
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <label class="control-label" for="inputEmail">Image</label>
-                                <div class="controls">
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
-                                </div>
-                            </div>
-
-                            <div class="controls">
-                                <button type="submit" name="submit" class="btn block">Add</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="span1"> &nbsp;</div>
-
-            </div>
-
-            <h3> Shipping information</h3>
+            <h3> Voucher information</h3>
             <hr class="soft"/>
 
             <div class="row">
@@ -190,30 +151,21 @@ Lower Header Section
 
                     <table class="table table-bordered table-condensed">
                         <thead>
-                        <th>Voucher No</th>
-                        <th>Username</th>
-                        <th>Shipping Address</th>
-                        <th>Zipcode</th>
-                        <th>Total price</th>
-                        <th>Payment Status</th>
-                        <th>DateTime</th>
+                        <th>Voucher ID</th>
+                        <th>Product Name</th>
+                        <th>Ordered Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Unit Total</th>
                         </thead>
                         <tbody>
                         <?php while ($row = $result->fetch_assoc()) {
 
-                            $temp_user = $row['username'];
-                            //getting user information
-                            $user_query = "SELECT * FROM user_information where username = '$temp_user'";
-                            $user = $connection->query($user_query)->fetch_assoc();
 
-                            $id = $row['id'];
-                            echo "<tr><td><a href='show_voucher_information.php?id=$id'>$id</a></td>";
-                            echo "<td>" . $row['username'] . "</td>";
-                            echo "<td>" . $user['full_address'] . "</td>";
-                            echo "<td>" . $user['zipcode'] . "</td>";
-                            echo "<td>" . $row['total_money'] . "</td>";
-                            echo "<td>" . $row['payment_status'] . "</td>";
-                            echo "<td>" . $row['order_time'] . "</td>";
+                            echo "<tr><td>" . $row['v_id'] . "</td>";
+                            echo "<td>" . $row['item_name'] . "</td>";
+                            echo "<td>" . $row['ordered_quantity'] . "</td>";
+                            echo "<td>" . $row['unit_price'] . "</td>";
+                            echo "<td>" . $row['ordered_quantity'] * $row['unit_price'] . "</td>";
                             echo "</tr>";
 
                         }
