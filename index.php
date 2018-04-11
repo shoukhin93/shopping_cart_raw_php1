@@ -158,6 +158,17 @@ Lower Header Section
                                    value="Add to Cart">
                         </div>
                     </form>
+
+                    <form action="edit_item.php" method="post">
+                        <div class="caption cntr">
+                            <input type="hidden" value="<?php echo $row["id"]; ?>" name="id">
+                            <input type="submit" style="margin-top:5px;" class="btn btn-default" value="Edit">
+                        </div>
+                    </form>
+
+                        <a class="btn btn-danger" style="margin-top:5px;"
+                           href="delete_item.php?id=<?php echo $row['id']; ?>">Delete</a>
+
                 </div>
 
 
