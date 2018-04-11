@@ -12,12 +12,13 @@ if (!empty($_SESSION["cart"])) {
     if (!empty($_SESSION['total_price']))
         $total_price = $_SESSION['total_price'];
 
-    $username = 'a';
+    $username = $_SESSION['user'];
     $payment_status = 'pending';
 
 
     $insert_shipping_info = "INSERT INTO shipping_info (username,total_money,payment_status) VALUES ('$username','$total_price','$payment_status')";
 
+    $last_id = 0;
     if ($connection->query($insert_shipping_info) === TRUE) {
         $last_id = $connection->insert_id;
         echo $last_id;

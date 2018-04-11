@@ -175,6 +175,12 @@ Lower Header Section
                                     <input type="text" name="full_address" placeholder="Full Address">
                                 </div>
                             </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">Zipcode</label>
+                                <div class="controls">
+                                    <input type="text" name="zipcode" placeholder="zipcode">
+                                </div>
+                            </div>
                             <div class="controls">
                                 <button type="submit" name="register" class="btn block">Create Your Account</button>
                             </div>

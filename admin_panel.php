@@ -1,5 +1,11 @@
 <?php
 session_start();
+include('connection.php');
+$shipping_info_query = "SELECT * FROM shipping_info";
+$result = $connection->query($shipping_info_query);
+
+
+?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,7 +136,7 @@ Lower Header Section
                 <li><a href="index.php">Home</a> <span class="divider">/</span></li>
                 <li class="active">Login</li>
             </ul>
-            <h3> Add Items</h3>
+            <h3> Shipping History</h3>
             <hr class="soft"/>
 
             <div class="row">
@@ -176,6 +182,55 @@ Lower Header Section
 
             </div>
 
+            <h3> Shipping information</h3>
+            <hr class="soft"/>
+
+            <div class="row">
+                <div class="span12">
+
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <th>Voucher No</th>
+                        <th>Username</th>
+                        <th>Shipping Address</th>
+                        <th>Zipcode</th>
+                        <th>Total price</th>
+                        <th>Payment Status</th>
+                        <th>DateTime</th>
+                        </thead>
+                        <tbody>
+                        <?php while ($row = $result->fetch_assoc()) {
+
+                            $temp_user = $row['username'];
+                            //getting user information
+                            $user_query = "SELECT * FROM user_information where username = '$temp_user'";
+                            $user = $connection->query($user_query)->fetch_assoc();
+
+                            //echo $user;
+
+                            $id = $row['id'];
+                            echo "<tr><td><a href='show_voucher.php?id=$id'>$id</a></td>";
+                            echo "<td>" . $row['username'] . "</td>";
+                            echo "<td>" . $user['full_address'] . "</td>";
+                            echo "<td>" . $user['zipcode'] . "</td>";
+                            echo "<td>" . $row['total_money'] . "</td>";
+                            echo "<td>" . $row['payment_status'] . "</td>";
+                            echo "<td>" . $row['order_time'] . "</td>";
+                            echo "</tr>";
+
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="span1"> &nbsp;</div>
+
+            </div>
+            <div class="span12">
+
+
+            </div>
         </div>
     </div>
     <!--
@@ -192,7 +247,7 @@ Lower Header Section
 <div class="copyright">
     <div class="container">
 
-        <span>Copyright &copy; 2013<br> bootstrap ecommerce shopping template</span>
+        <span>Copyright &copy; 2013<br> bootstrap e-commerce shopping template</span>
     </div>
 </div>
 

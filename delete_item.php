@@ -2,7 +2,7 @@
 include('connection.php');
 
 if (!isset($_GET['id'])) {
-    header('location:exindex.php');
+    header('location:index.php');
     exit();
 }
 

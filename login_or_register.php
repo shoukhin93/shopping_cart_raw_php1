@@ -54,7 +54,8 @@ else if (isset($_POST['login'])) {
 
     if (mysqli_num_rows($user) == 1) {
         session_start();
-        $_SESSION['user'] = $user;
+        $name = $user->fetch_assoc();
+        $_SESSION['user'] = $name['username'];
         $_SESSION['admin'] = 0;
         echo "<script>alert('Successfully logged in!')</script>";
         echo '<script>window.location="index.php"</script>';
