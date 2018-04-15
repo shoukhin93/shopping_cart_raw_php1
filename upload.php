@@ -1,13 +1,16 @@
 <?php
 
+session_start();
+
 include('connection.php');
 
 //admin authentication
-if (!isset($_SESSION['user']) || !isset($_SESSION['admin']))
-    header('location:login.php');
-
-elseif ($_SESSION['admin'] == 0) {
-    header('location:login.php');
+if (!isset($_SESSION['user']) || !isset($_SESSION['admin'])) {
+    echo "<script>alert('Please login to continue!')</script>";
+    echo '<script>window.location="login.php"</script>';
+} else if ($_SESSION['admin'] == 0) {
+    echo "<script>alert('Please login to continue')</script>";
+    echo '<script>window.location="login.php"</script>';
 }
 
 
@@ -46,7 +49,7 @@ if ($uploadOk == 0) {
     $quantity = $_POST['quantity'];
 
     //adding an unique id to distinguish between images
-    $image_path = uniqid().$target_dir . $_FILES["fileToUpload"]["name"];
+    $image_path = $target_dir . uniqid() . $_FILES["fileToUpload"]["name"];
 
     //echo $image_path;
 
@@ -55,7 +58,7 @@ if ($uploadOk == 0) {
     $connection->query($insert_into_products);
 
     //saving image
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $image_path)) {
         echo "<script>alert('Item successfully saved!')</script>";
         echo '<script>window.location="admin_panel.php"</script>';
     } else {

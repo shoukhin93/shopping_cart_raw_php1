@@ -160,15 +160,27 @@ Lower Header Section
                         </div>
                     </form>
 
+                    <?php 
+
+                    if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
+
+                    ?>
+
                     <form action="edit_item.php" method="post">
                         <div class="caption cntr">
                             <input type="hidden" value="<?php echo $row["id"]; ?>" name="id">
                             <input type="submit" style="margin-top:5px;" class="btn btn-default" value="Edit">
                         </div>
                     </form>
+                    
 
                     <a class="btn btn-danger" style="margin-top:5px;"
                        href="delete_item.php?id=<?php echo $row['id']; ?>">Delete</a>
+
+                       <?php 
+                }
+
+                    ?>
 
                 </div>
 

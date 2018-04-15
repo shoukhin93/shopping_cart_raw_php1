@@ -1,7 +1,6 @@
 <?php
 include('connection.php');
 session_start();
-//$connect = mysqli_connect("localhost", "root", "", "tut");
 
 
 if (isset($_POST["add"])) {
