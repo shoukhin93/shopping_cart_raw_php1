@@ -2,11 +2,13 @@
 session_start();
 include('connection.php');
 
-if (!isset($_SESSION['user']) || !isset($_SESSION['admin']))
-    header('location:login.php');
-
-elseif ($_SESSION['admin'] == 0) {
-    header('location:login.php');
+//admin authentication
+if (!isset($_SESSION['user']) || !isset($_SESSION['admin'])) {
+    echo "<script>alert('Please login to continue!')</script>";
+    echo '<script>window.location="login.php"</script>';
+} else if ($_SESSION['admin'] == 0) {
+    echo "<script>alert('Please login to continue')</script>";
+    echo '<script>window.location="login.php"</script>';
 }
 
 $shipping_info_query = "SELECT * FROM shipping_info";

@@ -3,11 +3,12 @@ include('connection.php');
 session_start();
 
 //admin authentication
-if (!isset($_SESSION['user']) || !isset($_SESSION['admin']))
-    header('location:login.php');
-
-elseif ($_SESSION['admin'] == 0) {
-    header('location:login.php');
+if (!isset($_SESSION['user']) || !isset($_SESSION['admin'])) {
+    echo "<script>alert('Please login to continue!')</script>";
+    echo '<script>window.location="login.php"</script>';
+} else if ($_SESSION['admin'] == 0) {
+    echo "<script>alert('Please login to continue')</script>";
+    echo '<script>window.location="login.php"</script>';
 }
 
 if (!isset($_POST['id']))
@@ -17,15 +18,40 @@ $item_search_query = "SELECT * FROM products where id = '$id'";
 $item = $connection->query($item_search_query)->fetch_assoc();
 
 if (isset($_POST['submit'])) {
+
+    //if not all data sent
+    if (!isset($_POST['product_name']) || !isset($_POST['product_name']) || !isset($_POST['product_name'])) {
+        echo "<script>alert('Please submit all data correctly!')</script>";
+        echo '<script>window.location="index.php"</script>';
+    }
+
     $product_name = $_POST['product_name'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
 
-    $sql_edit = "UPDATE  products SET p_name = '$product_name', price = '$price', quantity = '$quantity' WHERE ID = '$id'";
-    $connection->query($sql_edit);
+    //if image is submitted
+    if (isset($_FILES["fileToUpload"])) {
+        $image_path = 'images/' . uniqid() . $_FILES["fileToUpload"]["name"];
+        $sql_edit = "UPDATE  products SET p_name = '$product_name', image='$image_path', price = '$price', quantity = '$quantity' WHERE ID = '$id'";
 
-    echo "<script>alert('Successfully updated Item')</script>";
-    echo '<script>window.location="index.php"</script>';
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $image_path)) {
+            $connection->query($sql_edit);
+            echo "<script>alert('Item successfully saved!')</script>";
+            echo '<script>window.location="admin_panel.php"</script>';
+        } else {
+            echo "<script>alert('Sorry, there was an error inserting items')</script>";
+            echo '<script>window.location="admin_panel.php"</script>';
+        }
+
+    } else {
+        $sql_edit = "UPDATE  products SET p_name = '$product_name', price = '$price', quantity = '$quantity' WHERE ID = '$id'";
+        $connection->query($sql_edit);
+
+        echo "<script>alert('Successfully updated Item')</script>";
+        echo '<script>window.location="index.php"</script>';
+
+    }
+
 
 }
 
