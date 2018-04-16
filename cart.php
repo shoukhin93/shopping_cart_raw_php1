@@ -171,6 +171,8 @@ Lower Header Section
                     <?php
                     $total = $total + ($values["item_quantity"] * $values["product_price"]);
                     }
+
+                    $_SESSION["total_price"] = $total;
                     ?>
 
                     <tr>
@@ -194,7 +196,7 @@ Lower Header Section
                     <a href="confirm_shipping_info.php" class="shopBtn btn-large pull-right">Next <span
                                 class="icon-arrow-right"></span></a>
                     <?php
-                } elseif (isset($_SESSION["cart"])) {
+                } else if (isset($_SESSION["cart"])) {
                     ?>
 
                     <a href="login.php" class="shopBtn btn-large pull-right">Next <span

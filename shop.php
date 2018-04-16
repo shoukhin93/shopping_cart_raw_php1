@@ -14,7 +14,7 @@ if (isset($_POST["add"])) {
             $count = count($_SESSION["cart"]);
             $item_array = array(
                 'product_id' => $_GET["id"],
-                'product_image'=>$_POST["hidden_image_path"],
+                'product_image' => $_POST["hidden_image_path"],
                 'item_name' => $_POST["hidden_name"],
                 'product_price' => $_POST["hidden_price"],
                 'item_quantity' => $_POST["quantity"]
@@ -37,12 +37,15 @@ if (isset($_POST["add"])) {
     } else {
         $item_array = array(
             'product_id' => $_GET["id"],
-            'product_image'=>$_POST["hidden_image_path"],
+            'product_image' => $_POST["hidden_image_path"],
             'item_name' => $_POST["hidden_name"],
             'product_price' => $_POST["hidden_price"],
             'item_quantity' => $_POST["quantity"]
         );
         $_SESSION["cart"][0] = $item_array;
+
+        echo '<script>alert("Product has been removed")</script>';
+        echo '<script>window.location="cart.php"</script>';
     }
 }
 if (isset($_GET["action"])) {

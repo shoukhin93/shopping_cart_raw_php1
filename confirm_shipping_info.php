@@ -4,16 +4,14 @@ include('connection.php');
 
 session_start();
 
-//admin authentication
-if (!isset($_SESSION['user']) || !isset($_SESSION['admin'])){
-    header('location:login.php');
-    exit();
+//user authentication
+if (!isset($_SESSION['user']) || !isset($_SESSION['admin'])) {
+    echo "<script>alert('Please login to continue!')</script>";
+    echo '<script>window.location="login.php"</script>';
 }
 
 
-
 //if session not empty
-//echo "ok";
 if (!empty($_SESSION["cart"])) {
 
     $total_price = 0;
