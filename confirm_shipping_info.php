@@ -40,6 +40,17 @@ if (!empty($_SESSION["cart"])) {
         $voucher_insert = "INSERT INTO voucher_info (v_id,item_name,ordered_quantity,unit_price) VALUES ('$v_id','$item_name','$ordered_quantity','$unit_price')";
 
         $connection->query($voucher_insert);
+
+        //decrease quantity of each item
+        $temp_product_id = $values['product_id'];
+        $temp_product_item_query = "SELECT quantity from products WHERE id='$temp_product_id'";
+        $temp_product_item = $connection->query($temp_product_item_query)->fetch_assoc();
+
+        $updated_quantity = $temp_product_item['quantity'] - $ordered_quantity;
+        //echo $updated_quantity;
+
+        $decrease_query = "update products SET quantity ='$updated_quantity' WHERE id='$temp_product_id'";
+        $connection->query($decrease_query);
     }
 
     //removing session values
