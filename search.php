@@ -1,7 +1,15 @@
 <?php
 session_start();
 include('connection.php');
-$query = "SELECT * FROM products ORDER BY id ASC";
+
+if (!isset($_POST['search_name'])) {
+    echo "<script>alert('insert a text to search!')</script>";
+    echo '<script>window.location="index.php"</script>';
+}
+
+$name = $_POST['search_name'];
+
+$query = "SELECT * FROM products WHERE p_name LIKE '%$name%'";
 
 $result = $connection->query($query);
 
@@ -35,8 +43,8 @@ $result = $connection->query($query);
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
 </head>
 <body>
-<!-- 
-	Upper Header Section 
+<!--
+	Upper Header Section
 -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="topNav">
@@ -59,7 +67,7 @@ $result = $connection->query($query);
 </div>
 
 <!--
-Lower Header Section 
+Lower Header Section
 -->
 <div class="container">
     <div id="gototop"></div>
@@ -116,6 +124,7 @@ Lower Header Section
     <!--
     Three column view
     -->
+    <h2>Showing results for : <?php echo $name; ?></h2>
     <h3>Products </h3>
     <ul class="thumbnails">
 
