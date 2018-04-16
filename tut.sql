@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2018 at 10:49 AM
+-- Generation Time: Apr 16, 2018 at 08:03 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.1.14
 
@@ -41,8 +41,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `p_name`, `image`, `price`, `quantity`) VALUES
-(15, 'w', 'images/38B62B2800000578-3803995-image-a-113_1474633837284.jpg', 32.00, 10),
-(17, 'poi', 'images/b12d8cb1e607dfc0bc47c9a6ac857cde.jpg', 42.00, 23),
+(15, 'w', 'images/38B62B2800000578-3803995-image-a-113_1474633837284.jpg', 32.00, 9),
+(17, 'poi', 'images/b12d8cb1e607dfc0bc47c9a6ac857cde.jpg', 42.00, 22),
 (23, 'ee', 'images/5ad35c5a03eb9attend2.jpg', 32.00, 23);
 
 -- --------------------------------------------------------
@@ -72,7 +72,18 @@ INSERT INTO `shipping_info` (`id`, `username`, `total_money`, `payment_status`, 
 (9, 'jui', 0, 'pending', '2018-04-12 03:45:10'),
 (10, 'jui', 0, 'pending', '2018-04-16 08:11:24'),
 (11, 'admin', 42, 'pending', '2018-04-16 08:16:53'),
-(12, 'jui', 42, 'pending', '2018-04-16 08:41:16');
+(12, 'jui', 42, 'pending', '2018-04-16 08:41:16'),
+(13, 'jui', 42, 'pending', '2018-04-16 17:28:08'),
+(14, 'admin', 42, 'pending', '2018-04-16 17:38:01'),
+(15, 'admin', 42, 'pending', '2018-04-16 17:39:21'),
+(16, 'admin', 42, 'pending', '2018-04-16 17:40:14'),
+(17, 'admin', 32, 'pending', '2018-04-16 17:42:03'),
+(18, 'admin', 32, 'pending', '2018-04-16 17:42:43'),
+(19, 'admin', 32, 'pending', '2018-04-16 17:45:22'),
+(20, 'admin', 32, 'pending', '2018-04-16 17:47:12'),
+(21, 'admin', 32, 'pending', '2018-04-16 18:01:11'),
+(22, 'admin', 32, 'pending', '2018-04-16 18:02:14'),
+(23, 'admin', 42, 'pending', '2018-04-16 18:02:50');
 
 -- --------------------------------------------------------
 
@@ -107,7 +118,7 @@ INSERT INTO `user_information` (`username`, `password`, `first_name`, `last_name
 
 CREATE TABLE `voucher_info` (
   `v_id` int(11) NOT NULL,
-  `item_name` int(11) NOT NULL,
+  `item_name` varchar(30) NOT NULL,
   `ordered_quantity` int(11) NOT NULL,
   `unit_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -117,23 +128,33 @@ CREATE TABLE `voucher_info` (
 --
 
 INSERT INTO `voucher_info` (`v_id`, `item_name`, `ordered_quantity`, `unit_price`) VALUES
-(1, 15, 1, 33),
-(1, 12, 1, 66),
-(1, 15, 1, 33),
-(1, 12, 1, 66),
-(1, 15, 1, 33),
-(1, 12, 1, 66),
-(2, 0, 1, 33),
-(3, 0, 1, 33),
-(4, 0, 1, 32),
-(5, 0, 2, 42),
-(6, 0, 1, 42),
-(7, 0, 2, 42),
-(8, 0, 2, 42),
-(9, 0, 1, 42),
-(10, 0, 1, 42),
-(11, 0, 1, 42),
-(12, 0, 1, 42);
+(1, '15', 1, 33),
+(1, '12', 1, 66),
+(1, '15', 1, 33),
+(1, '12', 1, 66),
+(1, '15', 1, 33),
+(1, '12', 1, 66),
+(2, '0', 1, 33),
+(3, '0', 1, 33),
+(4, '0', 1, 32),
+(5, '0', 2, 42),
+(6, '0', 1, 42),
+(7, '0', 2, 42),
+(8, '0', 2, 42),
+(9, '0', 1, 42),
+(10, '0', 1, 42),
+(11, '0', 1, 42),
+(12, '0', 1, 42),
+(13, '0', 1, 42),
+(14, '0', 1, 42),
+(15, '0', 1, 42),
+(16, '0', 1, 42),
+(17, '0', 1, 32),
+(18, '0', 1, 32),
+(20, 'w', 1, 32),
+(21, 'w', 1, 32),
+(22, 'w', 1, 32),
+(23, 'poi', 1, 42);
 
 --
 -- Indexes for dumped tables
@@ -171,7 +192,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `shipping_info`
 --
 ALTER TABLE `shipping_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
