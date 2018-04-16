@@ -19,6 +19,7 @@ $result = $connection->query($query);
     <meta name="author" content="">
     <!-- Bootstrap styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Customize styles -->
     <link href="assets/css/style.css" rel="stylesheet"/>
     <!-- font awesome styles -->
@@ -129,7 +130,7 @@ Lower Header Section
             <li class="span4">
                 <div class="thumbnail">
                     <form method="post" action="shop.php?action=add&id=<?php echo $row["id"]; ?>">
-                        <img src="<?php echo $row["image"]; ?>" alt="">
+                        <img style="width: 100%; height: 400px; background-repeat: no-repeat;" src="<?php echo $row["image"]; ?>" alt="" >
                         <div class="caption cntr">
                             <p><?php echo $row["p_name"]; ?></p>
                             <p><strong> $<?php echo $row["price"]; ?></strong></p>
