@@ -44,7 +44,7 @@ if (isset($_POST["add"])) {
         );
         $_SESSION["cart"][0] = $item_array;
 
-        echo '<script>alert("Product has been removed")</script>';
+        echo '<script>alert("Product added to cart")</script>';
         echo '<script>window.location="cart.php"</script>';
     }
 }

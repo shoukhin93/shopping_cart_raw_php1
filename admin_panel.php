@@ -50,19 +50,17 @@ $result = $connection->query($shipping_info_query);
     <div class="topNav">
         <div class="container">
             <div class="alignR">
-                <div class="pull-left socialNw">
-                    <a href="#"><span class="icon-twitter"></span></a>
-                    <a href="#"><span class="icon-facebook"></span></a>
-                    <a href="#"><span class="icon-youtube"></span></a>
-                    <a href="#"><span class="icon-tumblr"></span></a>
-                </div>
+                <!-- <div class="pull-left socialNw">
+                     <a href="#"><span class="icon-twitter"></span></a>
+                     <a href="#"><span class="icon-facebook"></span></a>
+                     <a href="#"><span class="icon-youtube"></span></a>
+                     <a href="#"><span class="icon-tumblr"></span></a>
+                 </div>-->
                 <a href="index.php"> <span class="icon-home"></span> Home</a>
-                <a href="#"><span class="icon-user"></span> My Account</a>
-                <a href="register.html"><span class="icon-edit"></span> Free Register </a>
-                <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
+                <a href="login.php"><span class="icon-edit"></span> Free Register </a>
+                <a href="logout.php"><?php if (isset($_SESSION['user'])) echo "Logout"; ?></a>
                 <a href="cart.php"><span class="icon-shopping-cart"></span> <?php if (isset($_SESSION["cart"]))
-                        echo count($_SESSION["cart"]); ?>
-                    Item(s) - </a>
+                        echo count($_SESSION["cart"]); ?> Item(s)</a>
             </div>
         </div>
     </div>
@@ -107,31 +105,14 @@ Lower Header Section
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li class=""><a href="index.php">Home </a></li>
-
                     </ul>
-                    <form action="#" class="navbar-search pull-right">
-                        <input type="text" placeholder="Search" class="search-query span2">
+                    <form action="search.php" method="post" class="navbar-search pull-right">
+                        <input type="text" name="search_name" placeholder="Search" class="search-query span2">
                     </form>
                     <ul class="nav pull-right">
                         <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="icon-lock"></span>
-                                Login <b class="caret"></b></a>
-                            <div class="dropdown-menu">
-                                <form class="form-horizontal loginFrm">
-                                    <div class="control-group">
-                                        <input type="text" class="span2" id="inputEmail" placeholder="Email">
-                                    </div>
-                                    <div class="control-group">
-                                        <input type="password" class="span2" id="inputPassword" placeholder="Password">
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="checkbox">
-                                            <input type="checkbox"> Remember me
-                                        </label>
-                                        <button type="submit" class="shopBtn btn-block">Sign in</button>
-                                    </div>
-                                </form>
-                            </div>
+                            <a href="login.php"> Login </a>
+
                         </li>
                     </ul>
                 </div>
@@ -146,7 +127,7 @@ Lower Header Section
         <div class="span12">
             <ul class="breadcrumb">
                 <li><a href="index.php">Home</a> <span class="divider">/</span></li>
-                <li class="active">Login</li>
+                <li class="active">Admin Panel</li>
             </ul>
             <h3> Shipping History</h3>
             <hr class="soft"/>
@@ -257,7 +238,7 @@ Lower Header Section
 <div class="copyright">
     <div class="container">
 
-        <span>Copyright &copy; 2013<br> bootstrap e-commerce shopping template</span>
+        <span>Copyright &copy; 2018<br> e-commerce shopping site</span>
     </div>
 </div>
 
