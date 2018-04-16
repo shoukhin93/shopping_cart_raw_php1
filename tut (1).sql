@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2018 at 05:59 PM
+-- Generation Time: Apr 16, 2018 at 10:49 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.1.14
 
@@ -42,7 +42,8 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `p_name`, `image`, `price`, `quantity`) VALUES
 (15, 'w', 'images/38B62B2800000578-3803995-image-a-113_1474633837284.jpg', 32.00, 10),
-(17, 'poiu', 'images/b12d8cb1e607dfc0bc47c9a6ac857cde.jpg', 42.00, 23);
+(17, 'poi', 'images/b12d8cb1e607dfc0bc47c9a6ac857cde.jpg', 42.00, 23),
+(23, 'ee', 'images/5ad35c5a03eb9attend2.jpg', 32.00, 23);
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,15 @@ CREATE TABLE `shipping_info` (
 --
 
 INSERT INTO `shipping_info` (`id`, `username`, `total_money`, `payment_status`, `order_time`) VALUES
-(4, 'asdf', 0, 'pending', '2018-04-11 14:02:49');
+(4, 'asdf', 0, 'pending', '2018-04-11 14:02:49'),
+(5, 'qwer', 0, 'pending', '2018-04-12 03:30:17'),
+(6, 'qwer', 0, 'pending', '2018-04-12 03:30:45'),
+(7, 'qwer', 0, 'pending', '2018-04-12 03:33:11'),
+(8, 'jui', 0, 'pending', '2018-04-12 03:37:56'),
+(9, 'jui', 0, 'pending', '2018-04-12 03:45:10'),
+(10, 'jui', 0, 'pending', '2018-04-16 08:11:24'),
+(11, 'admin', 42, 'pending', '2018-04-16 08:16:53'),
+(12, 'jui', 42, 'pending', '2018-04-16 08:41:16');
 
 -- --------------------------------------------------------
 
@@ -87,6 +96,7 @@ CREATE TABLE `user_information` (
 
 INSERT INTO `user_information` (`username`, `password`, `first_name`, `last_name`, `contact_no`, `full_address`, `zipcode`) VALUES
 ('asdf', 'asdf', 'asdf', 'asdf', '123', 'asdf', 123),
+('jui', 'jui', 'jui', 'jui', 'jui', 'jui', 45),
 ('qwer', 'qwer', 'qwer', 'qwer', 'qwer', 'qwer', 12);
 
 -- --------------------------------------------------------
@@ -115,7 +125,15 @@ INSERT INTO `voucher_info` (`v_id`, `item_name`, `ordered_quantity`, `unit_price
 (1, 12, 1, 66),
 (2, 0, 1, 33),
 (3, 0, 1, 33),
-(4, 0, 1, 32);
+(4, 0, 1, 32),
+(5, 0, 2, 42),
+(6, 0, 1, 42),
+(7, 0, 2, 42),
+(8, 0, 2, 42),
+(9, 0, 1, 42),
+(10, 0, 1, 42),
+(11, 0, 1, 42),
+(12, 0, 1, 42);
 
 --
 -- Indexes for dumped tables
@@ -147,13 +165,13 @@ ALTER TABLE `user_information`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `shipping_info`
 --
 ALTER TABLE `shipping_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
