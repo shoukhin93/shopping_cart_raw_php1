@@ -9,6 +9,14 @@ if (isset($_POST["add"])) {
     $item = $connection->query($item_query)->fetch_assoc();
 
     if (isset($_SESSION["cart"])) {
+
+        if($_POST["quantity"] < 0)
+        {
+            echo "<script>alert('Quantity can not be negative')</script>";
+            echo '<script>window.location="index.php"</script>';
+            exit();
+        }
+
         $item_array_id = array_column($_SESSION["cart"], "product_id");
         if (!in_array($_GET["id"], $item_array_id)) {
             $count = count($_SESSION["cart"]);
