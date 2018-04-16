@@ -27,16 +27,17 @@ if (!empty($_SESSION["cart"])) {
     $last_id = 0;
     if ($connection->query($insert_shipping_info) === TRUE) {
         $last_id = $connection->insert_id;
-        echo $last_id;
+        //echo $last_id;
     }
 
     foreach ($_SESSION["cart"] as $keys => $values) {
         $v_id = $last_id;
-        $item_id = $values['product_name'];
+        $item_name = $values['item_name'];
+        echo $item_name;
         $ordered_quantity = $values['item_quantity'];
         $unit_price = $values['product_price'];
 
-        $voucher_insert = "INSERT INTO voucher_info (v_id,item_name,ordered_quantity,unit_price) VALUES ('$v_id','$item_id','$ordered_quantity','$unit_price')";
+        $voucher_insert = "INSERT INTO voucher_info (v_id,item_name,ordered_quantity,unit_price) VALUES ('$v_id','$item_name','$ordered_quantity','$unit_price')";
 
         $connection->query($voucher_insert);
     }
