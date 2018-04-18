@@ -70,7 +70,7 @@ Lower Header Section
             </div>
 
             <div class="span8 alignR">
-                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
+                <p><br> <strong> Contact : 01521477604 </strong><br><br></p>
                 <span class="btn btn-mini">[<?php if (isset($_SESSION["cart"]))
                         echo count($_SESSION["cart"]); ?>] <span
                             class="icon-shopping-cart"></span></span>
@@ -204,12 +204,7 @@ Lower Header Section
 
 </div><!-- /container -->
 
-<div class="copyright">
-    <div class="container">
 
-        <span>Copyright &copy; 2018<br> e-commerce shopping Cart</span>
-    </div>
-</div>
 <a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.js"></script>

@@ -198,12 +198,7 @@ Lower Header Section
 
 </div><!-- /container -->
 
-<div class="copyright">
-    <div class="container">
 
-        <span>Copyright &copy; 2018<br> e-commerce shopping cart</span>
-    </div>
-</div>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>

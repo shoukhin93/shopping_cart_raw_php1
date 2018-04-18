@@ -50,7 +50,7 @@ $result = $connection->query($query);
                      <a href="#"><span class="icon-tumblr"></span></a>
                  </div>-->
                 <a href="index.php"> <span class="icon-home"></span> Home</a>
-                <a href="login.php"><span class="icon-edit"></span> Free Register </a>
+                <a href="login.php"><span class="icon-edit"></span> Register/Login </a>
                 <a href="logout.php"><?php if (isset($_SESSION['user'])) echo "Logout"; ?></a>
                 <a href="cart.php"><span class="icon-shopping-cart"></span> <?php if (isset($_SESSION["cart"]))
                         echo count($_SESSION["cart"]); ?> Item(s)</a>
@@ -75,7 +75,7 @@ Lower Header Section
             </div>
 
             <div class="span8 alignR">
-                <p><br> <strong> Support (24/7) 0177777777 </strong><br><br></p>
+                <p><br> <strong> Contact: 01521477604 </strong><br><br></p>
                 <span class="btn btn-mini">[ <?php if (isset($_SESSION["cart"]))
                         echo count($_SESSION["cart"]); ?> ] <span class="icon-shopping-cart"></span></span>
                 <span class="btn btn-warning btn-mini">$</span>
@@ -130,7 +130,7 @@ Lower Header Section
             <li class="span4">
                 <div class="thumbnail">
                     <form method="post" action="shop.php?action=add&id=<?php echo $row["id"]; ?>">
-                        <img style="width: 100%; height: 400px; background-repeat: no-repeat;" src="<?php echo $row["image"]; ?>" alt="" >
+                        <img style="width: 100%; height: 200px; background-repeat: no-repeat;" src="<?php echo $row["image"]; ?>" alt="" >
                         <div class="caption cntr">
                             <p><?php echo $row["p_name"]; ?></p>
                             <p><strong> $<?php echo $row["price"]; ?></strong></p>
@@ -190,12 +190,7 @@ Lower Header Section
 
 </div><!-- /container -->
 
-<div class="copyright">
-    <div class="container">
 
-        <span>Copyright &copy; 2018<br> e-commerce shopping cart</span>
-    </div>
-</div>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>

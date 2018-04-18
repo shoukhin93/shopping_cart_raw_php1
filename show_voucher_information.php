@@ -141,7 +141,6 @@ Lower Header Section
 
                     <table class="table table-bordered table-condensed">
                         <thead>
-                        <th>Voucher ID</th>
                         <th>Product Name</th>
                         <th>Ordered Quantity</th>
                         <th>Unit Price</th>
@@ -151,8 +150,8 @@ Lower Header Section
                         <?php while ($row = $result->fetch_assoc()) {
 
 
-                            echo "<tr><td>" . $row['v_id'] . "</td>";
-                            echo "<td>" . $row['item_name'] . "</td>";
+                            //echo "<tr><td>" . $row['v_id'] . "</td>";
+                            echo "<tr><td>" . $row['item_name'] . "</td>";
                             echo "<td>" . $row['ordered_quantity'] . "</td>";
                             echo "<td>" . $row['unit_price'] . "</td>";
                             echo "<td>" . $row['ordered_quantity'] * $row['unit_price'] . "</td>";
@@ -184,12 +183,7 @@ Lower Header Section
 
 </div><!-- /container -->
 
-<div class="copyright">
-    <div class="container">
 
-        <span>Copyright &copy; 2013<br> bootstrap e-commerce shopping template</span>
-    </div>
-</div>
 
 </body>
 </html>

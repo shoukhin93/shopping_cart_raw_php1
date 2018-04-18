@@ -43,6 +43,14 @@ if (isset($_POST["add"])) {
 
         }
     } else {
+
+        if ($item_array['item_quantity'] > $item['quantity']) {
+                $product_name = $item_array['item_name'];
+                echo "<script>alert('not enough product in our store')</script>";
+                echo '<script>window.location="index.php"</script>';
+            }
+
+
         $item_array = array(
             'product_id' => $_GET["id"],
             'product_image' => $_POST["hidden_image_path"],
@@ -53,7 +61,7 @@ if (isset($_POST["add"])) {
         $_SESSION["cart"][0] = $item_array;
 
         echo '<script>alert("Product added to cart")</script>';
-        echo '<script>window.location="cart.php"</script>';
+        echo '<script>window.location="index.php"</script>';
     }
 }
 if (isset($_GET["action"])) {

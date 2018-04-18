@@ -82,7 +82,7 @@ Lower Header Section
             </div>
 
             <div class="span8 alignR">
-                <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
+                <p><br> <strong> Contact : 01521477604 </strong><br><br></p>
                 <span class="btn btn-mini">[ <?php if (isset($_SESSION["cart"]))
                         echo count($_SESSION["cart"]); ?> ] <span
                             class="icon-shopping-cart"></span></span>
@@ -188,7 +188,7 @@ Lower Header Section
                         <th>Shipping Address</th>
                         <th>Zipcode</th>
                         <th>Total price</th>
-                        <th>Payment Status</th>
+                       
                         <th>DateTime</th>
                         </thead>
                         <tbody>
@@ -205,7 +205,7 @@ Lower Header Section
                             echo "<td>" . $user['full_address'] . "</td>";
                             echo "<td>" . $user['zipcode'] . "</td>";
                             echo "<td>" . $row['total_money'] . "</td>";
-                            echo "<td>" . $row['payment_status'] . "</td>";
+                            
                             echo "<td>" . $row['order_time'] . "</td>";
                             echo "</tr>";
 
@@ -235,12 +235,7 @@ Lower Header Section
 
 </div><!-- /container -->
 
-<div class="copyright">
-    <div class="container">
 
-        <span>Copyright &copy; 2018<br> e-commerce shopping site</span>
-    </div>
-</div>
 
 </body>
 </html>

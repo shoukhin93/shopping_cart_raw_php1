@@ -33,7 +33,7 @@ if (!empty($_SESSION["cart"])) {
     foreach ($_SESSION["cart"] as $keys => $values) {
         $v_id = $last_id;
         $item_name = $values['item_name'];
-        echo $item_name;
+        //echo $item_name;
         $ordered_quantity = $values['item_quantity'];
         $unit_price = $values['product_price'];
 
